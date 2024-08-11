@@ -11,7 +11,17 @@ scaler = joblib.load('preprocess_pipeline.pkl')
 
 # Set page configuration
 st.set_page_config(page_title="MIR Soil Spectral Analysis", layout="wide")
-from PIL import Image
+
+
+# Add custom CSS to hide the "View Full Screen" option
+hide_streamlit_style = """
+            <style>
+            button[title="View fullscreen"] {
+                visibility: hidden;
+            }
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Load and resize the images
 icar_logo = Image.open("ICAR Logo.png")
