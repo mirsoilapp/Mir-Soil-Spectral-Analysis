@@ -77,8 +77,13 @@ if uploaded_file is not None:
         padding = np.zeros((spectra.shape[0], expected_columns - spectra.shape[1]))
         spectra = np.hstack([spectra, padding])
 
+
+    # Apply Savitzky-Golay filter and baseline correction
+    X_smoothed = savgol_filter(spectra, window_length=11, polyorder=2, axis=1)
+    X_corrected = detrend(X_smoothed, axis=1)
+
     # Scale the data using the pre-trained scaler
-    spectra_scaled = scaler.transform(spectra)
+    spectra_scaled = scaler.transform(X_corrected)
     
     # Make predictions using the model
     predictions = model.predict(spectra_scaled)
