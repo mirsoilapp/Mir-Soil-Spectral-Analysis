@@ -15,17 +15,22 @@ from PIL import Image
 
 # Load and resize the images
 icar_logo = Image.open("ICAR Logo.png")
+iiss_logo = Image.open("IISS Logo.png")
 icraf_logo = Image.open("ICRAF Logo.png")
+
 
 # Resize the images to the same dimensions
 icar_logo = icar_logo.resize((100, 100))
+iiss_logo = iiss_logo.resize((100, 100))
 icraf_logo = icraf_logo.resize((100, 100))
 
 # Layout the title and logos using columns
-col1, col2, col3 = st.columns([1, 6, 1])
+col1, col2, col3, col4 = st.columns([1,1, 6, 1])
 with col1:
     st.image(icar_logo, use_column_width=False)
 with col2:
+    st.image(iiss_logo, use_column_width=False)
+with col3:
     st.markdown("""
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
@@ -39,7 +44,7 @@ with col2:
         </style>
         <h2>MIR Spectroscopy Analysis System for Indian Soil</h2>
     """, unsafe_allow_html=True)
-with col3:
+with col4:
     st.image(icraf_logo, use_column_width=False)
 
 
